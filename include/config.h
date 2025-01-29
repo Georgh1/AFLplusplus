@@ -97,7 +97,7 @@
 /* Maximum allowed fails per CMP value. Default: 96 */
 #define CMPLOG_FAIL_MAX 96
 
-/* 
+/*
  * Effective fuzzing with selective feeding inputs
  */
 
@@ -216,7 +216,7 @@
 
 /* Absolute minimum number of havoc cycles (after all adjustments): */
 
-#define HAVOC_MIN 12U
+#define HAVOC_MIN 4U
 
 /* Power Schedule Divisor */
 #define POWER_BETA 1U
@@ -231,8 +231,11 @@
    In other words, the default (n = 4) produces 2, 4, 8, 16
    stacked tweaks: */
 
-#define HAVOC_STACK_POW2 4U
-
+#ifndef AFL_POW2
+  #error forgot to set AFL_POW2
+#else
+  #define HAVOC_STACK_POW2 AFL_POW2
+#endif
 /* Caps on block sizes for cloning and deletion operations. Each of these
    ranges has a 33% probability of getting picked, except for the first
    two cycles where smaller blocks are favored: */

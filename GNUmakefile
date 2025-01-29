@@ -50,6 +50,10 @@ ifdef ASAN_BUILD
   override CFLAGS += $(ASAN_CFLAGS)
   override LDFLAGS += $(ASAN_LDFLAGS)
 endif
+ifdef AFL_HAVOC
+  $(info Using $(AFL_HAVOC) for pow2havoc)
+  override CFLAGS += -DAFL_POW2=$(AFL_HAVOC)
+endif
 ifdef UBSAN_BUILD
   $(info Compiling UBSAN version of binaries)
   override CFLAGS += -fsanitize=undefined -fno-omit-frame-pointer
