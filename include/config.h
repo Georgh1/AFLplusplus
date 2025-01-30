@@ -232,7 +232,8 @@
    stacked tweaks: */
 
 #ifndef AFL_POW2
-  #error forgot to set AFL_POW2
+  #warning forgot to set AFL_POW2
+  #define HAVOC_STACK_POW2 4
 #else
   #define HAVOC_STACK_POW2 AFL_POW2
 #endif
